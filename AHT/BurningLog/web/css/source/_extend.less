@@ -1,0 +1,41 @@
+//mixin prefix-webkittttttttt
+.display-flex(){
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+}
+.justify-content(@__space){
+    -moz-justify-content: @__space;
+    -webkit-justify-content: @__space;
+    -ms-justify-content: @__space;
+    justify-content: @__space;
+}
+
+.flex-wrap(@__style-wrap){
+    -ms-flex-wrap:@__style-wrap;
+    flex-wrap:@__style-wrap;
+}  
+
+.animation(@__dislay,@__s,@__style){
+    -webkit-animation:@__display @__s @__style;
+    animation:@__display @__s @__style;
+}
+
+.translateX(@__x){
+    -webkit-transform:translateX(@__x);
+    -ms-transform:translateX(@__x);
+    transform:translateX(@__x);
+}
+
+.translateY(@__y){
+    -webkit-transform:translateY(@__y);
+    -ms-transform:translateY(@__y);
+    transform:translateY(@__y);
+}
+
+.translate(@__x,@__y){
+    -webkit-transform:translate(@__x,@__y);
+    -ms-transform:translate(@__x,@__y);
+    transform:translate(@__x,@__y);
+}

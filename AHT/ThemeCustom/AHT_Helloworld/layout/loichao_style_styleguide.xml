@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <link src="AHT_Helloworld::js/hello.js"/>
+    </head>
+    <body>
+       <referenceBlock name="aht.helloworld.styleguide">
+            <referenceContainer name="content">
+                <container name="style.content" htmlTag="div" htmlClass="style-content">
+                    <container name="left.content" htmlTag="div" htmlClass="left-content" before="-">
+                        <block class="Magento\Framework\View\Element\Template" name="left.content.block" template="AHT_Helloworld::Content/left.phtml"  /> 
+                    </container>
+                    <container name="right.content" htmlTag="div" htmlClass="right-content" >
+                        <block class="Magento\Framework\View\Element\Template" name="right.content.block" template="AHT_Helloworld::Content/right.phtml" />
+                    </container>
+                </container>
+            </referenceContainer>  
+        </referenceBlock>
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="top.line" template="Magento_Theme::right.phtml" after="logo"/>
+        </referenceContainer>
+
+    <!--Remove header element -->
+         <referenceBlock name="header.panel.wrapper" remove="true" />
+         <referenceContainer name="header.container">
+            <referenceBlock name="top.search" remove="true"/>
+            <referenceBlock name="minicart" remove="true"/>
+        </referenceContainer>
+        <referenceContainer name="footer-container" remove="true" /> <!-- Footer -->
+        <referenceBlock name="copyright" remove="true"/> <!-- Copyright -->
+    </body>
+</page>

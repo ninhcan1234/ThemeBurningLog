@@ -1,0 +1,6 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- <move element="view.addto.wishlist" destination="product.info.price" before="product.info.stock.sku" /> -->
+        <referenceBlock name="view.addto.wishlist" remove="true" />
+    </body>
+</page>

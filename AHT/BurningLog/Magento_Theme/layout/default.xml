@@ -1,0 +1,94 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <referenceBlock name="top.links">
+        <referenceBlock name="register-link" display="false" />  
+    </referenceBlock>
+
+    <referenceBlock name="header.panel">
+        <block class="Magento\Framework\View\Element\Template" name="header-top" before="-" template="Magento_Theme::header_top.phtml" />
+    </referenceBlock> 
+
+    <referenceBlock name="header.links">
+        <block class="Magento\Framework\View\Element\Html\Link" name="blog.link" before="authorization-link-login">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="false">Blog</argument>
+                <argument name="path" xsi:type="string" translate="false">blog</argument>
+            </arguments>
+        </block>
+        <block class="Magento\Framework\View\Element\Template" name="social.instagram.links" before="blog.link" template="Magento_Theme::header/links/instagram.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="social.facebook.links" before="social.instagram.links" template="Magento_Theme::header/links/facebook.phtml"/>
+     </referenceBlock>
+     
+    <referenceContainer name="footer">
+        <block class="Magento\Framework\View\Element\Template" name="footer-showroom" template="Magento_Theme::footer_showroom.phtml"/>
+    </referenceContainer>
+
+    <referenceContainer name="footer-container">
+        <container name="custom.container" htmlTag="div" htmlClass="custom-container">
+            <block class="Magento\Framework\View\Element\Template" name="footer-banner" template="Magento_Theme::footer_banner.phtml" /> 
+            <block class="Magento\Framework\View\Element\Template" name="footer-top" template="Magento_Theme::footer_top.phtml" />
+            <container name="sub.custom.footer" htmlTag="div" htmlClass="sub-custom-footer">
+
+                <block class="Magento\Cms\Block\Block" name="footer.category">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-category</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Cms\Block\Block" name="footer.about-burning">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-about-burning</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Cms\Block\Block" name="footer.policy">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-policy</argument>
+                    </arguments>
+                </block>
+
+                <container name="footer.newsletter.mobile" htmlTag="div" htmlClass="sub-footer-middle newsletter-mobile" before="footer.category">
+                    <block class="Magento\Cms\Block\Block" name="footer.newsletter.mobile.top" before="-" >
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-newsletter-mobile</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Newsletter\Block\Subscribe" name="my.form.subscribe" template="Magento_Newsletter::mysubscribe.phtml" ifconfig="newsletter/general/active"/>
+                    <block class="Magento\Cms\Block\Block" name="footer.newsletter.social.mobile" after="my.form.subscribe" >
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-social-mobile</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="footer.newsletter.desktop" htmlTag="div" htmlClass="sub-footer-middle newsletter-desktop" >
+                    <block class="Magento\Cms\Block\Block" name="footer.newsletter" before="-" >
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-newsletter</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="footer.newsletter.social" after="form.subscribe" >
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-social</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+            <container name="footer.bottom" htmlTag="div" htmlClass="footer-bot sub-custom-footer">
+                <block class="Magento\Cms\Block\Block" name="footer-bottom-copyright">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-copyright</argument>
+                    </arguments>
+                </block> 
+                <block class="Magento\Cms\Block\Block" name="footer-bottom-checkout">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-checkout</argument>
+                    </arguments>
+                </block> 
+            </container>  
+        </container>
+    </referenceContainer>
+
+    <referenceBlock name="footer_links" remove="true" /> 
+    <referenceBlock remove="true" name="copyright"/>
+    <move element="form.subscribe" destination="footer.newsletter.desktop" after="footer.newsletter" />
+</page>

@@ -1,0 +1,30 @@
+<div class="header-top-desktop-left">
+    <?php
+        echo $block->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('header-top-contact')
+            ->toHtml();
+    ?>
+</div>
+
+<div class="header-top-desktop-mid">
+    <?php
+        echo $block->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('header-top-links')
+            ->toHtml();
+    ?>
+</div>
+
+<div class="header-top-mobile-mid">
+    <?php
+        echo $block->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('header-top-links-mobile')
+            ->toHtml();
+    ?>
+</div>
+
+
+
+

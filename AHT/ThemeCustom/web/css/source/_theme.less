@@ -1,0 +1,236 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  _____________________________________________
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+@font-family-name__base: 'Open Sans';
+@font-family-name__qahiri: 'Qahiri';
+
+    //Font-name: Roboto
+@font-family-name__roboto-regular:'Roboto-Regular';
+@font-family-name__roboto-bold:'Roboto-Bold';
+@font-family-name__roboto-italic:'Roboto-Italic';
+@font-family-name__roboto-medium:'Roboto-Medium';
+@font-family-name__roboto-thin:'Roboto-Thin';
+@font-family-name__roboto-light:'Roboto-Light';
+
+    //Font-name: Lora
+@font-family-name__lora-regular:'Lora-Regular';
+@font-family-name__lora-bold:'Lora-Bold';
+@font-family-name__lora-italic:'Lora-Italic';
+@font-family-name__lora-medium:'Lora-Medium';
+
+//  ---------------------------------------------
+
+//  Fonts
+@font-family__base: @font-family-name__base, @font-family__sans-serif;
+@font-family__qahiri: @font-family-name__qahiri, @font-family__sans-serif;
+@font-family__roboto: @font-family-name__roboto-regular, @font-family__sans-serif;
+@font-family__roboto-bold: @font-family-name__roboto-bold, @font-family__sans-serif;
+@font-family__roboto-italic: @font-family-name__roboto-italic, @font-family__sans-serif;
+@font-family__roboto-medium: @font-family-name__roboto-medium, @font-family__sans-serif;
+@font-family__roboto-thin: @font-family-name__roboto-thin, @font-family__sans-serif;
+@font-family__roboto-light: @font-family-name__roboto-light, @font-family__sans-serif;
+@font-family__lora: @font-family-name__lora-regular, @font-family__sans-serif;
+@font-family__lora-bold: @font-family-name__lora-bold, @font-family__sans-serif;
+@font-family__lora-italic: @font-family-name__lora-italic, @font-family__sans-serif;
+@font-family__lora-medium: @font-family-name__lora-medium, @font-family__sans-serif;
+
+//
+//  Sections variables
+//  _____________________________________________
+
+//
+//  Tabs
+//  ---------------------------------------------
+@tab-content__border-top-status: true;
+
+@copyright__background-color: @color-gray-middle4;
+//
+//  Sidebar
+//  ---------------------------------------------
+//  Button variables
+@width-btn : 170px;
+@width-btn-standard : 136px;
+@height-btn: 38px;
+
+// @_button-font: @font-family__roboto;
+// @_button-size: @size-13;
+// @_button-bgcolor: @color-bgbutton;
+// @_button-bgcolor-hover: @color-bgbutton-hover;
+// @_button-bgcolor-standard: @color-white;
+// @_button-bgcolor-hover-standard: @color-bgbutton-hover-standard;
+
+//mixin-webkit-'
+.transition(@_s, @_style){
+    transition: @_s @_style;
+    -o-transition: @_s @_style;
+    -ms-transition: @_s @_style;
+    -moz-transition: @_s @_style;
+    -webkit-transition: @_s @_style;
+}
+//
+
+//  Style special
+@center: center;
+@solid: solid;
+@linear: linear;
+@pointer: pointer;
+//
+
+@sidebar__background-color: @color-white-smoke; // Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+//  Color variables
+@color-bgheader: #9c0513;
+@color-blue-dodger: #008bdb;
+@color-black_dark: #333333;
+
+@color-white: #fff;
+@color-black: #000;
+@color-yellow1: #ff0;
+@color-red: red;
+
+@color-darkie-gray: #8a837f;
+@color-gray19: #303030;
+@color-gray20: #333;
+@color-gray34: #575757;
+@color-gray37: #5e5e5e;
+@color-gray40: #666;
+@color-gray43: #6d6d6d;
+@color-gray46: #757575;
+@color-gray52: #858585;
+@color-gray55: #8c8c8c;
+@color-gray56: #8f8f8f;
+@color-gray60: #999;
+@color-gray62: #9e9e9e;
+@color-gray64: #a3a3a3;
+@color-gray68: #adadad;
+@color-gray76: #c2c2c2;
+@color-gray78: #c7c7c7;
+@color-gray79: #c9c9c9;
+@color-gray80: #ccc;
+@color-gray82: #d1d1d1;
+@color-gray83: #d4d4d4;
+@color-gray89: #e3e3e3;
+@color-gray90: #e5e5e5;
+@color-gray91: #e8e8e8;
+@color-gray92: #ebebeb;
+@color-gray94: #f0f0f0;
+@color-gray95: #f2f2f2;
+@color-gray_light: #cccccc;
+@color-lighter-grayish: #cacaca;
+@color-very-dark-gray: #666;
+@color-white-smoke: #f5f5f5;
+@color-white-dark-smoke: #efefef;
+@color-white-fog: #f8f8f8;
+
+@color-gray-light0: #f6f6f6;
+@color-gray-light01: #f4f4f4;
+@color-gray-light1: #e5efe5;
+@color-gray-light2: #bbb;
+@color-gray-light3: #aeaeae;
+@color-gray-light4: #cecece;
+@color-gray-light5: #c1c1c1;
+@color-gray-light6: #c5c5c5;
+
+@color-gray-middle1: #e4e4e4;
+@color-gray-middle2: #c6c6c6;
+@color-gray-middle3: #7e807e;
+@color-gray-middle4: #6e716e;
+@color-gray-middle5: #707070;
+
+@color-gray-darken0: #eee;
+@color-gray-darken1: #e2e2e2;
+@color-gray-darken2: #cdcdcd;
+@color-gray-darken3: #555;
+@color-gray-darken4: #494949;
+
+@color-red9: #ff0101;
+@color-red10: #e02b27;
+@color-red11: #b30000;
+@color-red12: #d10029;
+
+@color-orange-red1: #ff5501;
+@color-orange-red2: #ff5601; // Legacy orange
+@color-orange-red3: #ff5700; // Legacy orange
+@color-orange-red4: #fc5e10; // Legacy orange
+
+@color-dark-green1: #006400;
+
+@color-blue1: #1979c3;
+@color-blue2: #006bb4;
+@color-blue3: #00699D;
+@color-sky-blue1: #68a8e0;
+
+@color-pink1: #fae5e5;
+@color-dark-pink1: #800080; // Legacy pink
+
+@color-brownie: #514943;
+@color-brownie-vanilla: #736963;
+@color-brownie1: #6f4400;
+@color-brownie-light1: #c07600;
+
+@color-yellow-light1: #fdf0d5;
+@color-yellow-light2: #ffee9c;
+@color-yellow-light3: #d6ca8e;
+
+@color-bgbutton: #22b725;
+@color-bgbutton-hover: #11ab15;
+@color-bgbutton-hover-standard: #3b3b3e;
+@color-border-standard: 2px solid #3b3b3e;
+@color-font-input: #a9a9a9;
+
+//Size
+@size-10: 10px;
+@size-11: 11px;
+@size-12: 12px;
+@size-13: 13px;
+@size-14: 14px;
+@size-15: 15px;
+@size-16: 16px;
+@size-17: 17px;
+@size-18: 18px;
+@size-19: 19px;
+@size-20: 20px;
+@size-21: 21px;
+@size-22: 22px;
+@size-23: 23px;
+@size-24: 24px;
+@size-25: 25px;
+@size-26: 26px;
+@size-27: 27px;
+@size-28: 28px;
+@size-29: 29px;
+@size-30: 30px;
+@size-31: 31px;
+@size-32: 32px;
+@size-33: 33px;
+@size-34: 34px;
+@size-35: 35px;
+@size-36: 36px;
+@size-37: 37px;
+@size-38: 38px;
+@size-39: 39px;
+@size-40: 40px;
+@size-41: 41px;
+@size-42: 42px;
+@size-43: 43px;
+@size-44: 44px;
+@size-45: 45px;
+@size-46: 46px;
+@size-47: 47px;
+@size-48: 48px;
+@size-49: 49px;
+@size-50: 50px;
+
+@message-success__background: @color-white;
+@message-success__border-color: @color-dark-green1;
+@message-error__background: @color-white;
+@message-error__border-color: @error__color;
