@@ -1,34 +1,32 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-
-    <referenceBlock name="top.links">
-        <referenceBlock name="register-link" display="false" />  
-    </referenceBlock>
-
+<!-- HEADER --> 
     <referenceBlock name="header.panel">
-        <block class="Magento\Framework\View\Element\Template" name="header-top" before="-" template="Magento_Theme::header_top.phtml" />
-    </referenceBlock> 
+        <block class="Magento\Framework\View\Element\Template" name="header-top" before="-" template="Magento_Theme::header/header_top.phtml" />
 
-    <referenceBlock name="header.links">
-        <block class="Magento\Framework\View\Element\Html\Link" name="blog.link" before="authorization-link-login">
-            <arguments>
-                <argument name="label" xsi:type="string" translate="false">Blog</argument>
-                <argument name="path" xsi:type="string" translate="false">blog</argument>
-            </arguments>
-        </block>
-        <block class="Magento\Framework\View\Element\Template" name="social.instagram.links" before="blog.link" template="Magento_Theme::header/links/instagram.phtml"/>
-        <block class="Magento\Framework\View\Element\Template" name="social.facebook.links" before="social.instagram.links" template="Magento_Theme::header/links/facebook.phtml"/>
-     </referenceBlock>
-     
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="blog.link" before="authorization-link-login">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="false">Blog</argument>
+                    <argument name="path" xsi:type="string" translate="false">blog</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template" name="social.links" before="blog.link" template="Magento_Theme::header/links/social_links.phtml"/>
+        </referenceBlock>
+    </referenceBlock> 
+<!--    END_HEADER  -->     
+
+<!--    FOOTER  -->
     <referenceContainer name="footer">
-        <block class="Magento\Framework\View\Element\Template" name="footer-showroom" template="Magento_Theme::footer_showroom.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="footer-showroom" template="Magento_Theme::footer/showroom.phtml"/>
     </referenceContainer>
 
     <referenceContainer name="footer-container">
         <container name="custom.container" htmlTag="div" htmlClass="custom-container">
-            <block class="Magento\Framework\View\Element\Template" name="footer-banner" template="Magento_Theme::footer_banner.phtml" /> 
-            <block class="Magento\Framework\View\Element\Template" name="footer-top" template="Magento_Theme::footer_top.phtml" />
-            <container name="sub.custom.footer" htmlTag="div" htmlClass="sub-custom-footer">
+            <block class="Magento\Framework\View\Element\Template" name="footer-banner" template="Magento_Theme::footer/banner.phtml" /> 
+            <block class="Magento\Framework\View\Element\Template" name="footer-top" template="Magento_Theme::footer/top.phtml" />
 
+            <container name="sub.custom.footer" htmlTag="div" htmlClass="sub-custom-footer">
                 <block class="Magento\Cms\Block\Block" name="footer.category">
                     <arguments>
                         <argument name="block_id" xsi:type="string">footer-category</argument>
@@ -53,19 +51,25 @@
                             <argument name="block_id" xsi:type="string">footer-newsletter-mobile</argument>
                         </arguments>
                     </block>
+
+                <!--    DUPLICATE_BLOCK_SUBCRIBE=NEWSLETTER    -->
                     <block class="Magento\Newsletter\Block\Subscribe" name="my.form.subscribe" template="Magento_Newsletter::mysubscribe.phtml" ifconfig="newsletter/general/active"/>
+                <!--    ENd_DUPLICATE-->
+                
                     <block class="Magento\Cms\Block\Block" name="footer.newsletter.social.mobile" after="my.form.subscribe" >
                         <arguments>
                             <argument name="block_id" xsi:type="string">footer-social-mobile</argument>
                         </arguments>
                     </block>
                 </container>
+
                 <container name="footer.newsletter.desktop" htmlTag="div" htmlClass="sub-footer-middle newsletter-desktop" >
                     <block class="Magento\Cms\Block\Block" name="footer.newsletter" before="-" >
                         <arguments>
                             <argument name="block_id" xsi:type="string">footer-newsletter</argument>
                         </arguments>
                     </block>
+
                     <block class="Magento\Cms\Block\Block" name="footer.newsletter.social" after="form.subscribe" >
                         <arguments>
                             <argument name="block_id" xsi:type="string">footer-social</argument>
@@ -73,12 +77,14 @@
                     </block>
                 </container>
             </container>
+
             <container name="footer.bottom" htmlTag="div" htmlClass="footer-bot sub-custom-footer">
                 <block class="Magento\Cms\Block\Block" name="footer-bottom-copyright">
                     <arguments>
                         <argument name="block_id" xsi:type="string">footer-copyright</argument>
                     </arguments>
                 </block> 
+
                 <block class="Magento\Cms\Block\Block" name="footer-bottom-checkout">
                     <arguments>
                         <argument name="block_id" xsi:type="string">footer-checkout</argument>
@@ -87,8 +93,16 @@
             </container>  
         </container>
     </referenceContainer>
+<!--    END_FOOTER    -->
 
+     <!--   HIDE_ELEMENT   -->
+    <referenceBlock name="register-link" display="false" /> 
+    <referenceBlock name="product.info.sku" display="false" />  
+    
+    <!--    REMOVE_ELEMENT  -->
     <referenceBlock name="footer_links" remove="true" /> 
     <referenceBlock remove="true" name="copyright"/>
+
+    <!--    MOVE_ELEMENT    -->
     <move element="form.subscribe" destination="footer.newsletter.desktop" after="footer.newsletter" />
 </page>

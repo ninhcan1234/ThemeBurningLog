@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.details">
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">DESCRIPTION</argument>
+                    <argument name="sort_order" xsi:type="string">1</argument>
+                </arguments>
+            </referenceBlock>
+
+            <block class="Magento\Catalog\Block\Product\View" name="custom.tab.warranty" template="Magento_Catalog::tabs/warranty.phtml" group="detailed_info" >
+               <arguments>
+                    <argument translate="true" name="title" xsi:type="string">CARE &amp; WARRANTY</argument>
+                    <argument name="sort_order" xsi:type="string">2</argument>
+               </arguments>
+           </block>
+
+            <block class="Magento\Catalog\Block\Product\View" name="custom.tab.shipping" template="Magento_Catalog::tabs/shipping.phtml" group="detailed_info" >
+               <arguments>
+                    <argument translate="true" name="title" xsi:type="string">SHIPPING &amp; DELIVERY</argument>
+                    <argument name="sort_order" xsi:type="string">3</argument>
+               </arguments>
+           </block>
+
+           <block class="Magento\Catalog\Block\Product\View" name="custom.tab.requirement" template="Magento_Catalog::tabs/requirements.phtml" group="detailed_info" >
+               <arguments>
+                    <argument translate="true" name="title" xsi:type="string">INSTALLATION REQUIREMENTS</argument>
+                    <argument name="sort_order" xsi:type="string">4</argument>
+               </arguments>
+           </block>
+        </referenceBlock>
+
+        <referenceBlock name="product.attributes" remove="true" />
+        <referenceBlock name="product.info.social" display="false" />
+
+    </body>
+</page>

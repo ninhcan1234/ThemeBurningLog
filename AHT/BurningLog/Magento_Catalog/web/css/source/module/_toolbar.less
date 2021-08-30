@@ -32,21 +32,24 @@
         &:extend(.abs-add-clearfix all);
         margin-bottom: @indent__l;
         text-align: center;
+        display: flex;
+        justify-content: flex-end;
 
         select {
-            .lib-css(background-color, @toolbar-element-background);
-            .lib-css(box-shadow, @button__shadow);
-            border-radius: 3px;
+            border-radius: 0;
+            padding: 0 0 2px;
+            border: 0;
+            max-width: 100px;
         }
         .sorter-action {
             position: relative;
-            top: -2px;
+            right: 5px;
         }
         &-amount {
             left: 0;
             line-height: @toolbar-mode-icon-font-size + 2;
-            margin: 0;
-            padding: 7px 0;
+            margin: 0 15px 0 0;
+            padding: 10px 0;
             text-align: left;
             top: 0;
             vertical-align: middle;
@@ -81,6 +84,9 @@
 
     .sorter {
         float: right;
+        max-width: 200px;
+        border:1px solid @color-border;
+        padding-left: 15px;
 
         .page-products & {
             position: absolute;
@@ -100,15 +106,16 @@
 
         &-action {
             .lib-icon-font(
-            @icon-arrow-up,
-            @_icon-font-size: 16px,
+            @icon-up,
+            @_icon-font-size: 20px,
             @_icon-font-color: @header-icons-color,
             @_icon-font-color-hover: @header-icons-color-hover
             );
             .lib-icon-text-hide();
 
             &.sort-desc:before {
-                content: @icon-arrow-down;
+                content: @icon-down;
+                font-style: 20px,
             }
         }
     }
@@ -158,7 +165,7 @@
 
     .toolbar-amount {
         display: block;
-        float: left;
+        float: right;
         position: static;
     }
 
@@ -172,7 +179,6 @@
     .modes {
         display: inline-block;
         float: left;
-        margin-right: @indent__base;
 
         .products.wrapper ~ .toolbar & {
             display: none;

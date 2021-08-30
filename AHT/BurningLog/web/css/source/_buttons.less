@@ -41,9 +41,36 @@
 
     .action.primary {
         .lib-button-primary();
+        .lib-button( 
+        @_button-icon-use: true,
+        @_button-font-content: @icon-next,
+        @_button-icon-font-size: 28px,
+        @_button-icon-font-position:after,
+        @_button-icon-font-vertical-align:middle,
+        @_button-color:@color-white,
+        @_button-background:@color-black
+        );
     }
     
-    //custom-btn
-   
+    // Custom new button    
+    .action.new-button{
+        .lib-link-as-button();
+        .lib-button(
+        @_button-font-family: @font-family__roboto-bold,
+        @_button-font-size: 13px,
+        @_button-color: @color-black,
+        @_button-color-hover: @color-bgbutton-hover,
+        @_button-background: transparent,
+        @_button-background-hover: @color-bgbutton-hover,
+        @_button-border: 1px @color-black solid,
+        @_button-icon-use: true,
+        @_button-font-content: @icon-next,
+        @_button-icon-font-size: 28px,
+        @_button-icon-font-position:after,
+        @_button-icon-font-vertical-align:middle
+        );
+        border-radius: 0;
+        box-sizing: border-box;
+    }
     
 }

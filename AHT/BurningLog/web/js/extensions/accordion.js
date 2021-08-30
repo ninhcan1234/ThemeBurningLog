@@ -1,22 +1,23 @@
-
 require(['jquery','accordion'], function ($) {
-    if ($(window).width() < 640) {
-           $(".sub-footer-middle").accordion({
-             "openedState": "active",
-             "collapsible": true,
-             "active": [1],
-             "multipleCollapsible": true,
-             "animate":{
-                "timing-function":"ease-out",
-               duration:"500",
-               delay:"1s"
-            }
-         });
+   if ($(window).width() < 640) {
+      $(".sub-footer-middle").accordion({
+         "openedState": "active",
+         "collapsible": true,
+         "active": [2],
+         "multipleCollapsible": true,
+         "animate":{
+            timing:"ease-out",
+            duration:"500",
+            delay:"1s"
+         }
+      });
      }
  });
+
+
 //+- button
- require(['jquery', 'jquery/ui'], function($){ 
-    (function($) {
+require(['jquery', 'jquery/ui'], function($) { 
+   (function($) {
        $.fn.spinner = function() {
           this.each(function() {
              var el = $(this);   
@@ -32,11 +33,11 @@ require(['jquery','accordion'], function ($) {
                 if (el.val() < parseInt(el.attr('max')))
                 el.val( function(i, oldval) { 
                    return ++oldval; 
-                });
-             });
-          });
-       };
-    })(jQuery);
+               });
+            });
+         });
+      };
+   })(jQuery);
        
-    $('input[type=number]').spinner();
- });
+   $('input[type=number]').spinner();
+});

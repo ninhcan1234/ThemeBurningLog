@@ -132,6 +132,12 @@
 
         a {
             color: @color-white;
+            &:hover{
+                text-decoration: none;
+            }
+            .phone-icon{
+                display: none;
+            }
         }
     }
 
@@ -468,16 +474,22 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+.media-width(@extremum, @break) when (@extremum ='max') and (@break = @screen__m) {
     .cms-page-view .page-main {
         padding-top: 0;
         position   : relative;
     }
 
     //header
+    .header.panel a .phone-icon{
+        display:initial;
+    }
     .panel.header {
         height     : 36px;
         line-height: 36px;
+        .phone-text{
+            display: none;
+        }
     }
 
     .header-top-desktop-left {
@@ -690,26 +702,51 @@
                     border-top: 1px solid #a9a9a9;
                     border-bottom: 1px solid #a9a9a9;
                     position: relative;
-                    &::before{
-                        content:@icon-expand;
-                        position: absolute;
-                        right: 10px;
-                        color:#a9a9a9;
-                        transition: 2s ease-in-out 1s;
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-expand,
+                        @_icon-font-size: 24px,
+                        @_icon-font-position: after
+                    );
+                    display: block;
+                    &::after{
+                        float: right;
+                        margin-right: 15px
                     }
+                    
                 }
-                .allow.active h2::before{
-                    content: @icon-remove;
-                    font-size: 15px;
-                    transition: 2s;
-                }
-                 
+                .allow.active h2{
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-remove,
+                        @_icon-font-size: 24px,
+                        @_icon-font-position: after,
+                    );
+                    &::after{
+                        float: right;
+                        margin-right: 15px
+                    }
+                    display: block;
+                } 
             }
-            // &:not(:first-child){
-            //     max-height: 54px;
-            // }
         }
     }
+    .custom-container > .footer-bot{
+        height: unset;
+        max-height: 368px;
+        flex-direction: column-reverse;
+
+    }
+    .sub-custom-footer{
+        .sub-bottom {
+            text-align: center;
+            width: 100%;
+            line-height: unset;
+        }
+        .sub-bottom:nth-child(2){
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    } 
 }
 
 //
