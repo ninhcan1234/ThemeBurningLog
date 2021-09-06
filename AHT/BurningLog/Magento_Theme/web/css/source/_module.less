@@ -465,7 +465,7 @@
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
     .logo {
-        margin-bottom: 13px;
+        margin-bottom: 0;
         margin-top   : 4px;
     }
 }
@@ -578,7 +578,14 @@
     .block-search .minisearch input#search {
         position: static;
     }
-
+    .block-search{
+        .control{
+            border:0;
+        }
+        input{
+            margin:0;
+        }
+    }
     .block-search .minisearch .label {
         display: none;
     }
@@ -742,8 +749,8 @@
             line-height: unset;
         }
         .sub-bottom:nth-child(2){
-            display: flex;
-            justify-content: center;
+            .display-flex();
+            .justify-content(center);
             margin-top: 20px;
         }
     } 
@@ -762,10 +769,10 @@
 
     .navigation ul {
         padding: 0 8px;
-        display: flex;
-
+        .display-flex();
+        
         .level0 {
-            display       : flex;
+            .display-flex();
             flex-direction: column-reverse;
         }
     }
@@ -986,7 +993,7 @@
     .page-footer {
         // .lib-css(background, @footer__background-color);
         .lib-css(border-top, 1px solid @footer__background-color);
-        margin-top    : auto;
+        margin-top    : 20px;
         padding-bottom: @indent__m;
 
         .switcher {
@@ -1088,7 +1095,7 @@
     padding: 30px 20px;
 
     .footer-showroom {
-        display: flex;
+        .display-flex();
 
         .showroom {
             width     : 33%;
@@ -1169,6 +1176,7 @@
             line-height  : 98px;
             font-size    : 14px;
             width        : 25%;
+            text-align: center;
 
             span {
                 font-family : @font-family__roboto-medium;
@@ -1176,7 +1184,7 @@
             }
 
             i {
-                padding-left: 90px;
+                // padding-left: 90px;
             }
         }
     }
@@ -1190,8 +1198,8 @@
 }
 
 .sub-custom-footer {
-    display  : flex;
-    flex-wrap: wrap;
+    .display-flex();
+    .flex-wrap(wrap);
     font-size: 13px;
     .lib-css(max-width, @layout__max-width);
     .lib-css(margin, auto);
@@ -1250,7 +1258,7 @@
         color      : @color-black;
         line-height: 22px;
 
-        &:hover {
+        &:active {
             text-decoration: none;
             color          : @color-bgbutton-hover;
         }

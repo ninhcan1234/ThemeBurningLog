@@ -2,8 +2,8 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-            <css src="css/all.min.css" />
-            <link src="js/extensions/sliders.js"/>
-            <link src="js/extensions/accordion.js"/>
+        <css src="css/all.min.css" />
+        <link src="js/extensions/accordion.js"/>
+        <link src="js/extensions/sliders-allpage.js" />
     </head>
 </page>

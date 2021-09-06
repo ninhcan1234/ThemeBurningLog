@@ -1,3 +1,20 @@
-<li class="header-facebook-link" ><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-<li class="header-instagram-link"><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+<li class="social-link">
+    <?php
+        echo $block->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('social-link-facebook')
+                    ->toHtml();
+    ?>
+</li>
+
+<li class="social-link">
+    <?php
+        echo $block->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('social-link-instagram')
+                    ->toHtml();
+    ?>
+</li>
+
+
 

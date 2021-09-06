@@ -8,6 +8,10 @@
 <view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
     <media>
         <images module="Magento_Catalog">
+            <image id="swatch_image" type="swatch_image"> <!--Swatch image-size__right at product detail page -->
+                <width>88</width>
+                <height>66</height>
+            </image>
             <image id="bundled_product_customization_page" type="thumbnail">
                 <width>140</width>
                 <height>140</height>
@@ -74,8 +78,8 @@
             </image>
             <image id="product_page_image_large" type="image"/>
             <image id="product_page_image_medium" type="image">
-                <width>700</width>
-                <height>700</height>
+                <width>800</width>
+                <height>600</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
                 <width>130</width><!--90 90-->
@@ -91,8 +95,8 @@
                 <height>110</height>
             </image>
             <image id="product_page_main_image" type="image">
-                <width>700</width><!--700 700-->
-                <height>700</height>
+                <width>800</width><!--700 700-->
+                <height>600</height>
             </image>
             <image id="product_page_main_image_default" type="image">
                 <width>800</width>
@@ -186,6 +190,7 @@
                 <width>240</width>
                 <height>300</height>
             </image>
+            
         </images>
     </media>
     <vars module="Magento_Catalog">

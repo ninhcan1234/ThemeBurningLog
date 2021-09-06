@@ -168,6 +168,8 @@
 
 .fotorama__nav--thumbs {
     display: block;
+    margin: 10px 0 5px 0;
+
     .fotorama__nav__frame {
         padding-left: 0 !important;
         &:last-child {
@@ -237,7 +239,7 @@
     &:extend(.fotorama-print-background);
     backface-visibility: hidden;
     background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), rgba(64, 64, 64, 0.1));
-    border: 1px solid @color-head-block;
+    border: 1px solid #c1c1c1;
     left: 0;
     position: absolute;
     top: 0;
@@ -781,7 +783,7 @@
         transition-duration: @fotorama-fullscreen-zoom-time;
         transition-property: width, height, top, left;
         vertical-align: middle;
-        width: 100%;
+        width: auto;
     }
 }
 
@@ -979,6 +981,7 @@
 .gallery-placeholder {
     &__image {
         display: block;
+        margin: auto;
     }
 }
 

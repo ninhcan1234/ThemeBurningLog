@@ -268,3 +268,133 @@
 
 -->
 
+
+
+<!-- CONTENT PRODUC ****************************************************
+    
+<div class="content__bot">
+    <div class="sub-content__bot">
+        <div class="sub-content__bot-left">
+            <img src="" alt="">
+        </div>
+        <div class="sub-content__bot-right">
+            <h2><span>Luna Stone Collection</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            <a href="#">Read more</a>
+        </div>
+    </div>
+    <div class="sub-content__bot">
+        <div class="sub-content__bot-left">
+            <img src="" alt="">
+        </div>
+        <div class="sub-content__bot-right">
+            <h2><span>Luna Stone Dining Table</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            <a href="#">Read more</a>
+        </div>
+    </div>
+    <div class="sub-content__bot">
+        <div class="sub-content__bot-left">
+            <img src="" alt="">
+        </div>
+        <div class="sub-content__bot-right">
+            <h2><span>Summerset Dining Chair</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            <a href="#">Read more</a>
+        </div>
+    </div>
+</div> -->
+
+<!--    CSS CONTENT
+     .sub-content__bot{
+    padding:30px 26px;
+    border-top: 1px solid @color-border;
+    display:flex;
+    &-left,&-right{
+        width: 50%;
+    }
+    &-right{
+        text-align: center;
+        max-height: 220px;
+        line-height: 220px;
+        h2{
+            .lib-css(font-family, @font-family__lora);
+            font-size: 20px;
+        }
+        p,a{
+            .lib-css(font-family, @font-family__roboto);
+            font-size: 13px;
+            max-width:320px;
+            margin-top:13px;
+            line-height:20px;
+        }
+    }
+}
+
+//mobile 
+.content__bot{
+    .sub-content__bot{
+        flex-wrap: wrap;
+        &-left,&-right{
+            width: 100%;
+        }
+    }
+} -->
+
+
+
+<!-- <div class="short-content__bot">
+    <div class="sub-short-content">
+        <b>This product includes</b>
+        <div class="short-content">
+            <p>1 x Amalfi 130 Coffre Table: $395.00</p>
+            <p>1 x Amalfi Right Two Seater: $1095.00</p>
+            <p>1 x Amalfi Left Two Seater: $1095.00</p>
+            <p>1 x Amalfi Comer Sofa: $695.00</p>
+        </div>
+        <div class="short-total-price">
+            <p>RRP: $3,280.00</p>
+        </div>
+    </div>
+    <div class="sub-short-content">
+        <div class="sub-short-content-brand">
+            <div class="br">
+                <img src="{{media url=&quot;wysiwyg/royalle_outdoors_logo.png&quot;}}" alt="" />
+                <a href="#">More info</a>
+            </div>
+            <div class="br">
+<img src="{{media url=&quot;wysiwyg/sunbrella_logo.png&quot;}}" alt="" />
+                <a href="#">More info</a>
+            </div>
+        </div>
+        <div class="all-store">
+            <a href="#">
+               <img src="{{media url=&quot;wysiwyg/Background.png&quot;}}" alt="" />
+            </a>
+<h3>$99.00 delivery</h3>
+<p>on all orders from all our stores!</p>
+        </div>
+    </div>
+</div> -->
+
+
+.sub-short-content{
+    border-top:1px solid @color-border;
+    .sub-short-content-brand{
+    display:flex;
+    flex-wrap: wrap;
+    .br{
+        width:50%;
+    }
+}
+.all-store{
+    width:100%;
+    text-align:center;
+    position:relative;
+    &-text{
+        position:absolute;
+        top:50%;
+        .translateY(-50%);
+    }
+}
+}

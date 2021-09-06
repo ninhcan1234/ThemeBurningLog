@@ -1,4 +1,8 @@
-//mixin prefix-webkittttttttt
+//  Include Slick
+@import "slick/slick.less";
+@import "slick/slick-theme.less";
+
+//  Mixin prefix-webkittttttttt
 .display-flex(){
     display: -moz-flex;
     display: -webkit-flex;
@@ -12,9 +16,9 @@
     justify-content: @__space;
 }
 
-.flex-wrap(@__style-wrap){
-    -ms-flex-wrap:@__style-wrap;
-    flex-wrap:@__style-wrap;
+.flex-wrap(@__wrap){
+    -ms-flex-wrap:@__wrap;
+    flex-wrap:@__wrap;
 }  
 
 .animation(@__dislay,@__s,@__style){
@@ -38,4 +42,20 @@
     -webkit-transform:translate(@__x,@__y);
     -ms-transform:translate(@__x,@__y);
     transform:translate(@__x,@__y);
+}
+
+.flex-mobile__m(){ 
+    &:extend(.display-flex);
+    flex-wrap:wrap;
+    >*{
+        width: 50%;
+    }    
+}
+
+.flex-mobile__s() {
+    &:extend(.display-flex);
+    flex-wrap:wrap;
+    >*{
+        width: 100%;
+    }
 }

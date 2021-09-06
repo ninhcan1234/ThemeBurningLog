@@ -6,6 +6,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="js/extensions/sliders-homepage.js" />
+    </head>
     <body>
         <referenceContainer name="page.wrapper">
             <block class="Magento\Framework\View\Element\Template" name="homepage.main.banner" after="page.top" template="Magento_Cms::main_banner.phtml"/>

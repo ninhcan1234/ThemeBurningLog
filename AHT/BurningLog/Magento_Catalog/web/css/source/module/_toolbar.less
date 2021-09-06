@@ -31,7 +31,6 @@
     .toolbar {
         &:extend(.abs-add-clearfix all);
         margin-bottom: @indent__l;
-        text-align: center;
         display: flex;
         justify-content: flex-end;
 
@@ -50,7 +49,7 @@
             line-height: @toolbar-mode-icon-font-size + 2;
             margin: 0 15px 0 0;
             padding: 10px 0;
-            text-align: left;
+            // text-align: left;
             top: 0;
             vertical-align: middle;
 
@@ -79,8 +78,12 @@
 
         .pages {
             margin-bottom: @indent__m;
+            margin-right: 50%;
+            transform: translateX(50%);
         }
     }
+
+    
 
     .sorter {
         float: right;
@@ -165,7 +168,7 @@
 
     .toolbar-amount {
         display: block;
-        float: right;
+        float: left;
         position: static;
     }
 
@@ -233,6 +236,9 @@
     .sorter {
         .page-products & {
             position: static;
+            select{
+                .lib-css(font-family, @font-family__roboto);
+            }
         }
     }
 

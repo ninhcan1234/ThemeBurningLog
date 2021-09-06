@@ -7,7 +7,11 @@
 -->
 <page layout="1column"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="js/extensions/sliders-productpage.js"/>
+    </head>
     <body>
+    <referenceContainer name="content">
         <referenceBlock name="product.info.details">
             <referenceBlock name="product.info.description">
                 <arguments>
@@ -16,30 +20,53 @@
                 </arguments>
             </referenceBlock>
 
-            <block class="Magento\Catalog\Block\Product\View" name="custom.tab.warranty" template="Magento_Catalog::tabs/warranty.phtml" group="detailed_info" >
+            <block class="Magento\Catalog\Block\Product\View\Description" name="tab.warranty" template="Magento_Catalog::tabs/section.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">CARE &amp; WARRANTY</argument>
                     <argument name="sort_order" xsi:type="string">2</argument>
+                    <argument name="at_call" xsi:type="string">getCareWarranty</argument>
+                    <argument name="at_code" xsi:type="string">care_warranty</argument>
+                    <argument name="css_class" xsi:type="string">care-warranty</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="add_attribue" xsi:type="string">itemprop="care_warranty"</argument>
                </arguments>
+
            </block>
 
-            <block class="Magento\Catalog\Block\Product\View" name="custom.tab.shipping" template="Magento_Catalog::tabs/shipping.phtml" group="detailed_info" >
+            <block class="Magento\Catalog\Block\Product\View\Description" name="tab.shipping" template="Magento_Catalog::tabs/section.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">SHIPPING &amp; DELIVERY</argument>
                     <argument name="sort_order" xsi:type="string">3</argument>
+                    <argument name="at_call" xsi:type="string">getShipping</argument>
+                    <argument name="at_code" xsi:type="string">ship_delivery</argument>
+                    <argument name="css_class" xsi:type="string">shipping-delivery</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="shipping_delivery"</argument>
                </arguments>
            </block>
 
-           <block class="Magento\Catalog\Block\Product\View" name="custom.tab.requirement" template="Magento_Catalog::tabs/requirements.phtml" group="detailed_info" >
+           <block class="Magento\Catalog\Block\Product\View\Description" name="tab.requirement" template="Magento_Catalog::tabs/section.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">INSTALLATION REQUIREMENTS</argument>
                     <argument name="sort_order" xsi:type="string">4</argument>
+                    <argument name="at_call" xsi:type="string">getRequirement</argument>
+                    <argument name="at_code" xsi:type="string">requirement_installation</argument>
+                    <argument name="css_class" xsi:type="string">requirement-installation</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="requirements"</argument>
                </arguments>
            </block>
         </referenceBlock>
 
+        <block class="Magento\Cms\Block\Block" name="maybe_youlike" after="-">
+            <arguments>
+                <argument name="block_id" xsi:type="string">list_maybe_like</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+        
         <referenceBlock name="product.attributes" remove="true" />
-        <referenceBlock name="product.info.social" display="false" />
+        <referenceBlock name="product.info.social" remove="true" />
 
     </body>
 </page>
