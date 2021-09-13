@@ -1,0 +1,58 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">banner_index_form.index_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Customer Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="AHT\Banner\Block\Adminhtml\Banner\Edit\SaveAndContinueButton"/>
+            <button name="save" class="AHT\Banner\Block\Adminhtml\Banner\Edit\SaveButton"/>
+            <button name="reset" class="AHT\Banner\Block\Adminhtml\Banner\Edit\ResetButton"/>
+            <button name="delete" class="AHT\Banner\Block\Adminhtml\Banner\Edit\DeleteButton"/>
+            <button name="back" class="AHT\Banner\Block\Adminhtml\Banner\Edit\BackButton"/>
+        </buttons>
+        <namespace>banner_index_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>banner_index_form.index_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="index_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="banner/index/save"/>
+        </settings>
+        <dataProvider class="AHT\Post\Model\Post\DataProvider" name="index_form_data_source">
+            <settings>
+                <requestFieldName>post_id</requestFieldName>
+                <primaryFieldName>post_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="post_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">post</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>post_id</dataScope>
+            </settings>
+        </field>
+        
+    </fieldset>
+</form>

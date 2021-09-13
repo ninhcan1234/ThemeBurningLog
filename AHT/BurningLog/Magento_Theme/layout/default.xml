@@ -12,6 +12,7 @@
             </block>
 
             <block class="Magento\Framework\View\Element\Template" name="social.links" before="blog.link" template="Magento_Theme::header/links/social_links.phtml"/>
+            
         </referenceBlock>
     </referenceBlock> 
 <!--    END_HEADER  -->     

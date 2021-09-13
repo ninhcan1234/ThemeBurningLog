@@ -1,8 +1,5 @@
-
 .main-banner{
-    max-width: 1600px;
-    width:100%;
-    margin: auto;
+    margin-bottom: 20px;
     .list-banners{
         list-style: none;
         padding-left:0;
@@ -11,6 +8,15 @@
             position: relative;
             text-align: center;
             max-height: 680px;
+            .main-banner-img{
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+                .img-category{
+                    display: none;
+                }  
+            }
            
             .banner-section{
                 position: absolute;
@@ -25,6 +31,7 @@
                 }
                 h2{
                     .lib-css(font-family, @font-family__lora);
+                    .lib-css(font-weight, 400);
                     display: inline-block;
                     width: 485px;
                     font-size: 32px;
@@ -42,19 +49,7 @@
                 }
             }
         }
-        .banner-next{
-            .main-banner-img{
-                img{
-                    width: 100%;
-                    height: auto;
-                    object-fit: none;
-                    object-position: 0 -300px;
-                }
-                .img-category{
-                    display: none;
-                }  
-            }
-        }
+        
     }
 }
 
@@ -159,8 +154,8 @@
             left:50%;
             transform: translate(-50%,-50%);
             h2{
-                .lib-css(font-family, @font-family__lora-bold);
-                font-weight: 700;
+                .lib-css(font-family, @font-family__lora);
+                .lib-css(font-weight, 700);
                 font-size: 42px;
                 line-height: 42px;
                 width: 490px;
@@ -241,12 +236,21 @@
         margin-bottom: 30px;
     }
 }
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__xl) {
+    .main-banner .list-banners .slide-banner .main-banner-img img{
+        object-position: 0 -300px;
+    }
+}
+
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
     .tiles{
         flex-wrap: wrap;
         .sub-tile{
             width: 100%;
-            margin-top:20px;
+            &:not(:first-child){
+                margin-top: 20px;
+            }
         }
     }
 }

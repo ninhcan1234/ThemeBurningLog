@@ -23,7 +23,7 @@ require(['jquery','accordion'], function ($) {
          delay:"1s"
       }
    });
- });
+});
 
 require(['jquery', 'jquery/ui'], function($) { 
    (function($) {
@@ -40,8 +40,7 @@ require(['jquery', 'jquery/ui'], function($) {
                   qty.val( function(i, oldval) { 
                      return --oldval; 
                   });
-               }
-                  
+               }            
              });
 
             qty.parent().on('click', '.qty__add', function() {

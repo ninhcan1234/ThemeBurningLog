@@ -1,0 +1,22 @@
+<?php
+/** @var \AHT\UiComponent\Block\Template $block */
+?>
+
+<div id="uic-demo-container" data-bind="scope: 'uicdemo'">
+    
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#uic-demo-container":{
+            "components":{
+                "uicdemo":{
+                    "component": "AHT_UiComponent/js/view/demo",
+                    "config": {
+                        "template": "AHT_UiComponent/demo"
+                    }
+                }
+            }
+        }
+    }
+</script>

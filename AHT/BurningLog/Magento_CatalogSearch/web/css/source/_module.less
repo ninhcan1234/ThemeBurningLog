@@ -69,7 +69,19 @@
         }
 
         .action.search {
-            display: none;
+            position: absolute;
+            right: 0;
+            bottom: 1px;
+            background: none;
+            border: 0;
+            span{
+                font-size: 0;
+            }
+            .lib-icon-font(
+                @_icon-font-content: @icon-search,
+                @_icon-font-size: 17px,
+                @_icon-font-position:after
+            )
         }
 
         .control {
@@ -263,6 +275,9 @@
             right: @indent__s;
             top: 0;
             z-index: 1;
+            &::after{
+                font-size: 0;
+            }
 
             &:focus {
                 &:before {

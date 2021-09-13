@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AHT_Post::my_post" title="POST" module="AHT_Post" sortOrder="10" action="demo/posting/index" resource="AHT_Post::my_post"/>
+        <add id="AHT_Post::sub_my_post" parent="AHT_Post::my_post" title="List Post" module="AHT_Post" sortOrder="11" action="demo/posting/index" resource="AHT_Post::my_post"/>
+    </menu>
+</config>

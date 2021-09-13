@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AHT_UiComponent::menu_custom" title="Menu" module="AHT_UiComponent" sortOrder="10" action="uic/posting/index" resource="AHT_UiComponent::menu_custom"/>
+    </menu>
+</config>

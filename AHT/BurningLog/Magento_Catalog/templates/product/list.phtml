@@ -67,14 +67,12 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 
                     <div class="more-inform">
                         <?php
-                            $_getMore = $_product->getResource()->getAttribute('color_test');
-                          
+                            $_getMore = $_product->getResource()->getAttribute('color_test');           
                             $_moreInformValue = $_getMore->getFrontend()->getValue($_product);
 
                             if($_moreInformValue){
                                 echo $block->escapeHtml(__("<p>MORE COLOURS AVAILABLE</p>"),['p']);
-                            }
-                                
+                            }       
                         ?>
                     </div>
 
@@ -110,13 +108,10 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                     case "Sale":
                                         echo $block->escapeHtml(__('<span class="sale">SALE</span>'),['span']);
                                         break;
-                                }
-                                       
+                                }                              
                             ?>
                         </div>
 
-                        
-                       
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
                                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>

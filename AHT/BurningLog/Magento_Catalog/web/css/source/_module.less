@@ -78,6 +78,17 @@
         margin-bottom: @indent__base;
     }
 
+   
+    .page-title-wrapper{
+        font-size:15px;
+        
+        .page-title{
+            .lib-css(font-family, @font-family__roboto);
+            .lib-css(font-weight, 700);
+            .lib-css(font-size, 15px);
+        }
+    } 
+
     //
     //  Product images general container
     //  -----------------------------------------
@@ -213,6 +224,8 @@
                 .price-wrapper .price {
                     .lib-font-size(20);
                     font-weight: @font-weight__light;
+                    text-decoration: line-through;
+                    color: @color-red;
                 }
             }
 
@@ -326,7 +339,8 @@
                     .actions{
                         width: 100%;
                         button{
-                            .lib-css(font-family, @font-family__roboto-bold);
+                            .lib-css(font-family, @font-family__roboto);
+                            .lib-css(font-weight, 700);
                             font-size: 13px;
                             height: 40px;
                             padding: 8px 17px;
@@ -688,6 +702,9 @@
         .product.media {
             .lib-vendor-prefix-order(-1);
         }
+    }
+    .page-title-wrapper{
+        margin-top:40px;
     }
 }
 
@@ -1089,7 +1106,8 @@
         .product-item-info{
             position: relative;
             .special-attribute{
-                .lib-css(font-family, @font-family__roboto-bold);
+                .lib-css(font-family, @font-family__roboto);
+                .lib-css(font-weight, 700);
                 font-size: 13px;
                 letter-spacing: 1px;
                 position: absolute;
@@ -1217,6 +1235,40 @@
             }
         }
     }
+
+    .more-inform{
+        p{
+            font-size: 13px;
+            -webkit-animation: change 1500ms infinite;
+            -moz-animation: change 1500ms infinite; 
+            -o-animation: change 1500ms infinite; 
+            animation: change 1500ms infinite;
+        }
+        @-webkit-keyframes change {
+            0% { color: @color-red; }
+            25% { color: @color-green; } 
+            50% { color: @color-white; } 
+            100% { color: @color-purple; } 
+        }
+        @-moz-keyframes change { 
+            0% { color: @color-red; }
+            25% { color: @color-green; } 
+            50% { color: @color-white; }
+            100% { color: @color-purple; } 
+        }
+        @-o-keyframes change { 
+            0% { color: @color-red; } 
+            25% { color: @color-green; } 
+            50% { color: @color-white; } 
+            100% { color: @color-purple;} 
+        }
+        @keyframes change { 
+            0% { color: @color-red; }
+            25% { color: @color-green; } 
+            50% { color: @color-white; }
+            100% { color: @color-purple; } 
+        } 
+    }
 }
 
 //
@@ -1284,6 +1336,7 @@
                     }
                     h2{
                         .lib-css(font-family, @font-family__roboto);
+                        .lib-css(font-weight, 400);
                         font-size: 15px;
                         line-height: 22px;
                         width: 499px;
@@ -1323,7 +1376,7 @@
     .columns{
         .column.main{
             .main-banner .list-banners .slide-banner {
-                max-height: 220px;
+                // max-height: 220px;
             }
         }
     }
@@ -1349,10 +1402,12 @@
             line-height: 220px;
             h2{
                 .lib-css(font-family, @font-family__lora);
+                .lib-css(font-weight, 400);
                 font-size: 20px;
             }
             p,a{
                 .lib-css(font-family, @font-family__roboto);
+                .lib-css(font-weight, 400);
                 font-size: 13px;
                 max-width:315px;
                 margin:auto;
@@ -1415,7 +1470,8 @@
                 left:50%;
                 .translate(-50%,-50%);
                 h3{
-                    .lib-css(font-family,@font-family__roboto-medium);
+                    .lib-css(font-family,@font-family__roboto);
+                    .lib-css(font-weight, 500);
                     font-size: 20px;
                     margin-top:0;
                     margin-bottom: 7px;

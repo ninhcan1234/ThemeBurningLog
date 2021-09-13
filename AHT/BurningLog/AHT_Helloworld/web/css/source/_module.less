@@ -1,0 +1,65 @@
+.field.qty .control .spinner input[type='number']{
+    text-align: center;
+}
+.example-sections-1{
+    .lib-data-tabs();
+}
+body {
+    .lib-css(font-family, @font-family__roboto);
+    .lib-css(font-size, 13px);
+    .lib-css(line-height, 20px);
+}
+
+.title{
+    .lib-css(font-size, 30px);
+    .lib-css(color, @color-gray_light);
+}
+
+h1,
+h2,
+h3 {
+    .lib-css(font-family, @font-family__lora);
+    .lib-css(font-weight, 400);
+}
+
+h1 {
+    .lib-css(font-size, 36px);
+}
+
+h2 {
+    .lib-css(font-size, 24px);
+}
+
+h3 {
+    .lib-css(font-size, 18px);
+}
+
+h4 {
+    .lib-css(font-family, @font-family__roboto);
+    .lib-css(font-weight, 700);
+    .lib-css(font-size, 15px);
+}
+
+.style-right{
+    .lib-css(color, @color-white);
+    .lib-css(font-size, 30px);
+    .lib-css(display, inline-block);
+    .lib-css(margin-left, 25px);
+    .lib-css(margin-top, 35px);
+}
+
+input[type="radio"],input[type="checkbox"]{
+    .lib-css(width, 40px);
+    .lib-css(height, 40px);
+}
+
+.form{
+    .fieldset{
+        .lib-form-fieldset();
+        .lib-form-hasrequired(bottom);
+        .field {
+            .lib-form-field();
+        }
+    }
+}
+

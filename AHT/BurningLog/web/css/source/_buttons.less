@@ -51,15 +51,23 @@
         @_button-background:@color-black
         );
     }
+
+    .action.primary.new {
+        .lib-button-primary();
+        .lib-button( 
+        @_button-color:@color-black,
+        @_button-background:transparent
+        );
+    }
     
     // Custom new button    
     .action.new-button{
         .lib-link-as-button();
         .lib-button(
-        @_button-font-family: @font-family__roboto-bold,
+        @_button-font-family: @font-family__roboto,
         @_button-font-size: 13px,
         @_button-color: @color-black,
-        @_button-color-hover: @color-bgbutton-hover,
+        @_button-color-hover: @color-black,
         @_button-background: transparent,
         @_button-background-hover: @color-bgbutton-hover,
         @_button-border: 1px @color-black solid,
@@ -69,8 +77,27 @@
         @_button-icon-font-position:after,
         @_button-icon-font-vertical-align:middle
         );
-        border-radius: 0;
-        box-sizing: border-box;
+        .lib-css(border-radius, 0);
+        .lib-css(box-sizing, border-box);
+        .lib-css(font-weight, 700);
+        .lib-css(min-width, 130px);
+        .lib-css(text-align, center);
+        &::after{
+            font-size: 0;
+        }  
     }
-    
+
+    .action.new-button.secondary{
+        .lib-link-as-button();
+        .lib-button(
+        @_button-font-family: @font-family__roboto,
+        @_button-font-size: 13px,
+        @_button-color: @color-white,
+        @_button-color-hover: @color-black,
+        @_button-background: @color-green,
+        @_button-background-hover: transparent,
+        @_button-border: 1px @color-black solid
+        );
+        
+    }
 }

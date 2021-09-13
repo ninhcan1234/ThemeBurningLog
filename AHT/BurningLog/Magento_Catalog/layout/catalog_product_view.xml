@@ -30,7 +30,6 @@
                     <argument name="at_label" xsi:type="string">none</argument>
                     <argument name="add_attribue" xsi:type="string">itemprop="care_warranty"</argument>
                </arguments>
-
            </block>
 
             <block class="Magento\Catalog\Block\Product\View\Description" name="tab.shipping" template="Magento_Catalog::tabs/section.phtml" group="detailed_info" >
@@ -65,8 +64,7 @@
         </block>
     </referenceContainer>
         
-        <referenceBlock name="product.attributes" remove="true" />
-        <referenceBlock name="product.info.social" remove="true" />
-
+    <referenceBlock name="product.attributes" remove="true" />
+    <referenceBlock name="product.info.social" remove="true" />
     </body>
 </page>

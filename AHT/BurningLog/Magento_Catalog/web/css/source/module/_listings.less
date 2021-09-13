@@ -139,14 +139,20 @@
                 .price-label {
                     .lib-css(color, @product-price__muted__color);
                     font-size: @font-size__s;
+                    display: none;
                 }
             }
 
             .old-price {
                 margin: @indent__xs 0;
+                margin-left: 30px;
+                text-decoration: line-through;
+                color:@color-red;
+                font-size: 15px;
 
                 .price {
-                    font-weight: normal;
+                    .lib-css(font-family, @font-family__roboto);
+                    font-weight: 700;
                 }
             }
 
