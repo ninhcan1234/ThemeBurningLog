@@ -1,6 +1,5 @@
 <?php
 namespace AHT\UiComponent\Block\Adminhtml\Post\Edit;
-use Magento\Search\Controller\RegistryConstants;
 
 class GenericButton 
 {

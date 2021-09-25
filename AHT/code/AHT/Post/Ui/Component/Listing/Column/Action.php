@@ -1,10 +1,12 @@
 <?php
 namespace AHT\Post\Ui\Component\Listing\Column;
 
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Magento\Framework\UrlInterface;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Escaper;
 
 class Action extends Column
 {
@@ -12,6 +14,16 @@ class Action extends Column
      * @var UrlInterface
      */
     protected $urlBuilder;
+      /**
+     * Url path
+     */
+    const URL_PATH_EDIT = 'uic/posting/edit';
+    const URL_PATH_DELETE = 'uic/posting/delete';
+        /**
+     * @var Escaper
+     */
+    private $escaper;
+
  
     /**
      * Action constructor.
@@ -42,19 +54,53 @@ class Action extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                $item[$this->getData('name')] = [
-                    'edit' => [
-                        'href' => $this->urlBuilder->getUrl('uic/posting/edit', ['id' => $item['post_id']]),
-                        'label' => __('Edit')
-                    ],
-                    'delete' =>[
-                        'href' => $this->urlBuilder->getUrl('uic/posting/delete', ['id' => $item['post_id']]),
-                        'label'=> __('Delete')
-                    ]
-                ];
+                if (isset($item['post_id'])) {
+                    $name = $this->getEscaper()->escapeHtmlAttr($item['name']);
+                    $item[$this->getData('name')] = [
+                        'edit' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_EDIT,
+                                [
+                                    'id' => $item['post_id'],
+                                ]
+                            ),
+                            'label' => __('Edit'),
+                            '__disableTmpl' => true,
+                        ],
+                        'delete' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_DELETE,
+                                [
+                                    'id' => $item['post_id'],
+                                ]
+                            ),
+                            'label' => __('Delete'),
+                            'confirm' => [
+                                'name' => __('Delete %1', $name),
+                                'message' => __('Are you sure you want to delete a %1 record?', $name),
+                            ],
+                            'post' => true,
+                            '__disableTmpl' => true,
+                        ],
+                    ];
+                }
             }
         }
- 
+
         return $dataSource;
+    }
+
+    /**
+     * Get instance of escaper
+     *
+     * @return Escaper
+     * @deprecated 101.0.7
+     */
+    private function getEscaper()
+    {
+        if (!$this->escaper) {
+            $this->escaper = ObjectManager::getInstance()->get(Escaper::class);
+        }
+        return $this->escaper;
     }
 }

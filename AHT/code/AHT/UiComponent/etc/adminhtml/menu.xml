@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="AHT_UiComponent::menu_custom" title="Menu" module="AHT_UiComponent" sortOrder="10" action="uic/posting/index" resource="AHT_UiComponent::menu_custom"/>
+        <add id="AHT_UiComponent::post_menu" title="Post Manager" module="AHT_UiComponent" sortOrder="10" action="uic/posting/index" resource="AHT_UiComponent::post_menu"/>
+        <add id="AHT_UiComponent::post_menu_listing" title="List Post" parent="AHT_UiComponent::post_menu" module="AHT_UiComponent" sortOrder="10" action="uic/posting/index" resource="AHT_UiComponent::post_menu"/>
+        <add id="AHT_UiComponent::attribute_customer" title="Attribute" parent="Magento_Customer::customer" module="AHT_UiComponent" sortOrder="60" action="uic/attrcustomer/index" resource="AHT_UiComponent::post_menu"/>
     </menu>
 </config>

@@ -19,7 +19,7 @@ class Upload extends \Magento\Backend\App\Action implements HttpPostActionInterf
      * @var \Magento\Catalog\Model\ImageUploader
      */
     protected $imageUploader;
-
+    protected $postRepositoryInterface;
     /**
      * Upload constructor.
      *
@@ -28,7 +28,7 @@ class Upload extends \Magento\Backend\App\Action implements HttpPostActionInterf
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \AHT\Post\Model\ImageUploader $imageUploader
+        \Magento\Catalog\Model\ImageUploader $imageUploader
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
@@ -41,7 +41,7 @@ class Upload extends \Magento\Backend\App\Action implements HttpPostActionInterf
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('AHT_Post::post');
+        return $this->_authorization->isAllowed('AHT_UiComponent::save');
     }
 
     /**

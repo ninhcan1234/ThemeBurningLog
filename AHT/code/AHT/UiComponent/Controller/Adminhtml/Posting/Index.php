@@ -3,7 +3,7 @@ namespace AHT\UiComponent\Controller\Adminhtml\Posting;
 
 class Index extends \Magento\Backend\App\Action
 {
-    CONST TITLE = 'CRUD';
+    CONST TITLE = 'LIST POST';
      /**
      * @var \Magento\Framework\View\Result\PageFactory
      */     

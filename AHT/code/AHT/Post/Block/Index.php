@@ -1,26 +1,42 @@
 <?php
 namespace AHT\Post\Block;
 
+use AHT\UiComponent\Helper\GetSystemConfig;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+
 class Index extends \Magento\Framework\View\Element\Template
 {
-    /**
-     * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param array $data
-     */
-    protected $_allPost;
-
+    protected $getSystemConfig;
+    protected $postRepository;
+    protected $searchCriteriaBuilder;
+    
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \AHT\Post\Model\ResourceModel\Post\Collection $allPost,
-        array $data = []
+        \AHT\Post\Api\PostRepositoryInterface $postRepository,
+        array $data = [],
+        GetSystemConfig $getSystemConfig,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
-        $this->_allPost = $allPost;
+        $this->postRepository = $postRepository;
         parent::__construct($context, $data);
+        $this->getSystemConfig = $getSystemConfig;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+    }
+
+    public function getItemsJson(){
+        $results = [];
+        foreach($this->getAll() as $post){
+            $results[$post->getIdentifier()] = [
+                'name' => $post->getName(),
+                'description' => $post->getDescription(),
+            ];
+        }
     }
 
     public function getAll(){
-        $data = $this->_allPost;
-        return $data;
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+        $postSearchResults = $this->postRepository->getList($searchCriteria);
+        return $postSearchResults->getItems();
     }
 
     public function toSave(){
@@ -34,4 +50,9 @@ class Index extends \Magento\Framework\View\Element\Template
     public function toDelete($id){
         return $this->getUrl('post/action/delete?id='.$id);
     }
+
+    public function getTextContent($path){
+        return $this->getSystemConfig->getConfig($path);
+    }
+
 }

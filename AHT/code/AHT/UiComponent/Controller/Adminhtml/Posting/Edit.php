@@ -72,12 +72,13 @@ class Edit extends Action implements HttpGetActionInterface
     public function execute()
     {
         // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('post_id');
-        $model = $this->_postFactory->create();
-
+        $id = $this->getRequest()->getParam('id');
+        $model = $this->_postFactory->create(); 
+        
         // 2. Initial checking
         if ($id) {
-            $this->_postRepository->load($model, $id);
+            $this->_postRepository->load($model, $id)();
+            
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This page no longer exists.'));
                 /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */

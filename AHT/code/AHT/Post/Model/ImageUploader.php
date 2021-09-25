@@ -198,9 +198,8 @@ class ImageUploader
      */
     public function moveFileFromTmp($imageName, $returnRelativePath = false)
     {
-        $baseTmpPath = $this->getBaseTmpPath();
-        $basePath = $this->getBasePath();
-
+        $baseTmpPath = $this->getBaseTmpPath()."/post/tmp/images" ;
+        $basePath = $this->getBasePath(). "/post/images";
         $baseImagePath = $this->getFilePath(
             $basePath,
             Uploader::getNewFileName(
@@ -211,7 +210,7 @@ class ImageUploader
         );
         $baseTmpImagePath = $this->getFilePath($baseTmpPath, $imageName);
 
-        try {
+        // try {
             $this->coreFileStorageDatabase->copyFile(
                 $baseTmpImagePath,
                 $baseImagePath
@@ -220,11 +219,12 @@ class ImageUploader
                 $baseTmpImagePath,
                 $baseImagePath
             );
-        } catch (\Exception $e) {
-            throw new \Magento\Framework\Exception\LocalizedException(
-                __('Something went wrong while saving the file(s).')
-            );
-        }
+           
+        // } catch (\Exception $e) {
+        //     throw new \Magento\Framework\Exception\LocalizedException(
+        //         __('Something went wrong while saving the file(s).')
+        //     );
+        // }
 
         return $returnRelativePath ? $baseImagePath : $imageName;
     }

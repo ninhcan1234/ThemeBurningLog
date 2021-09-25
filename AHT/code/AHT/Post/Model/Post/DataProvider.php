@@ -1,114 +1,50 @@
 <?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
 namespace AHT\Post\Model\Post;
 
 use AHT\Post\Model\ResourceModel\Post\CollectionFactory;
+use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Ui\DataProvider\Modifier\PoolInterface;
-use AHT\Post\Model\Post;
-use Magento\Framework\App\ObjectManager;
-use Magento\Framework\App\RequestInterface;
-use Magento\Framework\AuthorizationInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
-/**
- * Class DataProvider
- */
-class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
+class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
-    /**
-     * @var \AHT\Post\Model\ResourceModel\Post\Collection
-     */
+
     protected $collection;
-
-    /**
-     * @var DataPersistorInterface
-     */
     protected $dataPersistor;
-
-    /**
-     * @var array
-     */
+    protected $storeManager;
     protected $loadedData;
 
     /**
-     * @var AuthorizationInterface
-     */
-    private $auth;
-
-    /**
-     * @var RequestInterface
-     */
-    private $request;
-
-    /**
-     * @var CustomLayoutManagerInterface
-     */
-    private $customLayoutManager;
-
-    /**
-     * @var CollectionFactory
-     */
-    private $collectionFactory;
-
-    /**
+     * Constructor
+     *
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $postCollectionFactory
+     * @param CollectionFactory $collectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data
-     * @param PoolInterface|null $pool
-     * @param AuthorizationInterface|null $auth
-     * @param RequestInterface|null $request
-     * @param CustomLayoutManagerInterface|null $customLayoutManager
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $postCollectionFactory,
+        CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = [],
-        PoolInterface $pool = null,
-        ?AuthorizationInterface $auth = null,
-        ?RequestInterface $request = null
+        StoreManagerInterface $storeManager
     ) {
-        $this->collection = $postCollectionFactory->create();
-        $this->collectionFactory = $postCollectionFactory;
+        $this->collection = $collectionFactory->create();
         $this->dataPersistor = $dataPersistor;
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
-        $this->auth = $auth ?? ObjectManager::getInstance()->get(AuthorizationInterface::class);
-        $this->meta = $this->prepareMeta($this->meta);
-        $this->request = $request ?? ObjectManager::getInstance()->get(RequestInterface::class);
-    }
-
-    /**
-     * Find requested post.
-     *
-     * @return Post|null
-     */
-    private function findCurrentPost(): ?Post
-    {
-        if ($this->getRequestFieldName() && ($postId = (int)$this->request->getParam($this->getRequestFieldName()))) {
-            //Loading data for the collection.
-            $this->getData();
-            return $this->collection->getItemById($postId);
-        }
-
-        return null;
-    }
-
-    /**
-     * Prepares Meta
-     *
-     * @param array $meta
-     * @return array
-     */
-    public function prepareMeta(array $meta)
-    {
-        return $meta;
+        $this->storeManager = $storeManager;
+        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
     /**
@@ -121,33 +57,26 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
-        $this->collection = $this->collectionFactory->create();
         $items = $this->collection->getItems();
-        /** @var $post \AHT\Post\Model\Post */
-        foreach ($items as $post) {
-            $this->loadedData[$post->getId()] = $post->getData();
-            if ($post->getCustomLayoutUpdateXml() || $post->getLayoutUpdateXml()) {
-                //Deprecated layout update exists.
-                $this->loadedData[$post->getId()]['layout_update_selected'] = '_existing_';
+        foreach ($items as $model) {
+            $data = $model->getData();
+            $image = $data['image'];
+            if ($image && is_string($image)){
+                $data['images'][0]['name'] = $image;
+                $data['images'][0]['url'] = $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'post/images/'. $image;
             }
+            $this->loadedData[$model->getPostId()] = $model->getData();
+            
         }
-
-        $data = $this->dataPersistor->get('post');
+        $data = $this->dataPersistor->get('aht_post_post');
+        
         if (!empty($data)) {
-            $post = $this->collection->getNewEmptyItem();
-            $post->setData($data);
-            $this->loadedData[$post->getId()] = $post->getData();
-            if ($post->getCustomLayoutUpdateXml() || $post->getLayoutUpdateXml()) {
-                $this->loadedData[$post->getId()]['layout_update_selected'] = '_existing_';
-            }
-            $this->dataPersistor->clear('post');
+            $model = $this->collection->getNewEmptyItem();
+            $model->setData($data);
+            $this->loadedData[$model->getId()] = $model->getData();
+            $this->dataPersistor->clear('aht_post_post');
         }
-
+        
         return $this->loadedData;
     }
-
-    /**
-     * @inheritDoc
-     */
-
 }

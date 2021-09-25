@@ -6,10 +6,19 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    
+
     <virtualType name="PostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
             <argument name="collection" xsi:type="object" shared="false">AHT\Post\Model\ResourceModel\Post\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PostListingFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PostListingFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
         </arguments>
     </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
@@ -32,6 +41,7 @@
             </argument>
         </arguments>
     </type>
+
     <virtualType name="AHT\Post\PostImageUpload" type="Magento\Catalog\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">post/tmp/images</argument>
@@ -54,6 +64,5 @@
         <arguments>
             <argument name="imageUploader" xsi:type="object">AHT\Post\PostImageUpload</argument>
         </arguments>
-    </type> 
-   
+    </type>
 </config>

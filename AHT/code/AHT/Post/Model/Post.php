@@ -59,11 +59,16 @@ class Post extends \Magento\Framework\Model\AbstractModel implements \AHT\Post\A
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+    }
 
     public function getId(){
         return $this->getData(self::ID);
     }
 
+    
     public function setId($id){
         $this->setData(self::ID, $id);
         return $this;
@@ -110,6 +115,16 @@ class Post extends \Magento\Framework\Model\AbstractModel implements \AHT\Post\A
     public function setUpdatedAt($updated_at)
     {
         $this->setData(self::UPDATED_AT, $updated_at);
+        return $this;
+    }
+
+    public function getImage(){
+        return $this->getData(self::IMAGE);
+    }
+
+    public function setImage($image)
+    {
+        $this->setData(self::IMAGE, $image);
         return $this;
     }
 

@@ -17,7 +17,7 @@
                 <url path="*/*/new"/>
                 <class>primary</class>
                 <label translate="true">Add New Post</label>
-            </button>        
+            </button>
         </buttons>
         <spinner>uic_page_columns</spinner>
         <deps>
@@ -31,7 +31,7 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Magento_Cms::page</aclResource>
+        <aclResource>AHT_UiComponent::post_menu</aclResource>
         <dataProvider class="Magento\Cms\Ui\Component\DataProvider" name="uic_posting_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
@@ -45,7 +45,20 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
-        <filterSearch name="fulltext"/>
+
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">uic_posting_listing.uic_posting_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">uic_posting_listing.uic_posting_listing.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">uic_posting_listing.uic_posting_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+
         <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="observers" xsi:type="array">
@@ -114,10 +127,20 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="uic_page_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="resizeConfig" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/resize</item>
+                    <item name="rootSelector" xsi:type="string">${ $.columnsProvider }:.admin__data-grid-wrap</item>
+                    <item name="columnsProvider" xsi:type="string">${ $.name }</item>
+                </item>
+            </item>
+        </argument>
         <settings>
             <editorConfig>
                 <param name="clientConfig" xsi:type="array">
-                    <item name="saveUrl" xsi:type="url" path="cms/page/inlineEdit"/>
+                    <item name="saveUrl" xsi:type="url" path="uic/posting/inlineEdit"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
                 <param name="indexField" xsi:type="string">post_id</param>
@@ -142,56 +165,92 @@
                 <resizeDefaultWidth>55</resizeDefaultWidth>
             </settings>
         </selectionsColumn>
-        
-            <column name="post_id">
-                <settings>
-                    <filter>textRange</filter>
-                    <label translate="true">ID</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
+        <column name="post_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>textRange</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">NAME</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
 
-            <column name="name" >
-                <settings>
-                    <filter>textRange</filter>
-                    <label translate="true">NAME</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
+        <column name="description">
+            <settings>
+                <filter>textRange</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">DESCRIPTION</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="image" class="AHT\Post\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">title</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                </item>
+            </argument>
+        </column>
+        <column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">60</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">TIME CREATE</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="updated_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">60</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">TIME UPDATE</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="AHT\Post\Model\Config\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
 
-            <column name="description" >
-                <settings>
-                    <filter>textRange</filter>
-                    <label translate="true">DESCRIPTION</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
-            <column name="created_at" >
-                <settings>
-                    <filter>textRange</filter>
-                    <dataType>date</dataType>
-                    <label translate="true">TIME CREATE</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
-            <column name="updated_at" >
-                <settings>
-                    <filter>textRange</filter>
-                    <dataType>date</dataType>
-                    <label translate="true">TIME UPDATE</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
-            <column name="status" >
-                <settings>
-                    <filter>textRange</filter>
-                    <dataType>boolean</dataType>
-                    <label translate="true">STATUS</label>
-                    <sorting>asc</sorting>
-                </settings>
-            </column>
-      
-        <actionsColumn name="actions" class="AHT\Post\Ui\Component\Listing\Column\Action" >
+        <actionsColumn name="actions" class="AHT\Post\Ui\Component\Listing\Column\Action">
             <settings>
                 <indexField>post_id</indexField>
                 <resizeEnabled>false</resizeEnabled>

@@ -1,6 +1,11 @@
 <?php
 $posts = $block->getAll();
+
+$text = $block->getTextContent('uicomponent_section/my_module/mytext_content');
+echo $text;
+
 ?>
+
 
 <?php if (count($posts) > 0): ?>
     <h2>Hey!!</h2>
@@ -15,12 +20,12 @@ $posts = $block->getAll();
         </tr>
         <?php foreach ($posts as $post): ?>
             <tr>
-                <td><?= $post->getPost_id() ?></td>
+                <td><?= $post->getId() ?></td>
                 <td><?= $post->getName() ?></td>
                 <td><?= $post->getDescription() ?></td>
                 <td><?= $post->getCreated_at() ?></td>
                 <td><?= $post->getUpdated_at() ?></td>
-                <td><a href="<?= $block->toEdit($post->getPost_id())?>">Edit </a><a href="<?= $block->toDelete($post->getId())?>">Delete</a></td>
+                <td><a href="<?= $block->toEdit($post->getId())?>">Edit </a><a href="<?= $block->toDelete($post->getId())?>">Delete</a></td>
             </tr>
         <?php endforeach; ?>
     </table>

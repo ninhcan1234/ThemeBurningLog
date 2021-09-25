@@ -1,19 +1,19 @@
 <?php
+
 namespace AHT\UiComponent\Controller\Adminhtml\Posting;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Exception;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Backend\App\Action;
-use Magento\Cms\Model\Page;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Save CMS page action.
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class Save extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class Save extends Action implements HttpPostActionInterface
 {
     /**
      * Authorization level of a basic admin session
@@ -21,11 +21,12 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
      * @see _isAllowed()
      */
 
+
     /**
      * @var PostDataProcessor
      */
     protected $dataProcessor;
-
+    protected $storeManager;
     /**
      * @var DataPersistorInterface
      */
@@ -40,7 +41,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
      * @var \Magento\Cms\Api\PostRepositoryInterface
      */
     private $postRepository;
-
+    protected $imageUploader;
     /**
      * @param Action\Context $context
      * @param PostDataProcessor $dataProcessor
@@ -52,14 +53,18 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         Action\Context $context,
         // PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \AHT\Post\Model\PostFactory $postFactory ,
-        \AHT\Post\Api\PostRepositoryInterface $postRepository 
+        \AHT\Post\Model\PostFactory $postFactory,
+        \AHT\Post\Api\PostRepositoryInterface $postRepository,
+        \AHT\Post\Model\ImageUploader $imageUploader,
+        StoreManagerInterface $storeManager
     ) {
         // $this->dataProcessor = $dataProcessor;
         $this->dataPersistor = $dataPersistor;
-        $this->postFactory = $postFactory ;
+        $this->postFactory = $postFactory;
         $this->postRepository = $postRepository;
+        $this->imageUploader = $imageUploader;
         parent::__construct($context);
+        $this->storeManager = $storeManager;
     }
 
     /**
@@ -71,23 +76,27 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
     public function execute()
     {
         $data = $this->getRequest()->getParams();
+
+        if(isset($data['images'])){
+            $imageName= $data['images'][0]['name'];
+            $imageUrl = $data['images'][0]['url'];
+        }
+
         $date = date('d-m-Y H:i:s');
+        $id = $this->getRequest()->getParam('id');
+        
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
-            $data = $this->dataProcessor->filter($data);
-            // if (isset($data['status']) && $data['status'] === 'true') {
-            //     $data['status'] = Page::STATUS_ENABLED;
-            // }
-            if (empty($data['post_id'])) {
+            if (empty($id)) {
                 $data['post_id'] = null;
                 $data['created_at'] = $date;
+            } else {
+                $data['updated_at'] = $date;
             }
 
-            /** @var \Magento\Cms\Model\Page $model */
             $model = $this->postFactory->create();
 
-            $id = $this->getRequest()->getParam('post_id');
             if ($id) {
                 try {
                     $model = $this->postRepository->getById($id);
@@ -96,11 +105,12 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
                     return $resultRedirect->setPath('*/*/');
                 }
             }
-
+            isset($data['images']) ? $data['image'] = $imageName: $data['image'] = null;
             $model->setData($data);
 
-            try {
+            try { 
                 $this->postRepository->save($model);
+                $this->imageUploader->moveFileFromTmp($imageName);
                 $this->messageManager->addSuccessMessage(__('You saved the post.'));
                 return $this->processResultRedirect($model, $resultRedirect, $data);
             } catch (LocalizedException $e) {
@@ -144,7 +154,7 @@ class Save extends \Magento\Backend\App\Action implements HttpPostActionInterfac
         }
         $this->dataPersistor->clear('cms_post');
         if ($this->getRequest()->getParam('back')) {
-            return $resultRedirect->setPath('*/*/edit', ['page_id' => $model->getId(), '_current' => true]);
+            return $resultRedirect->setPath('*/*/edit', ['post_id' => $model->getId(), '_current' => true]);
         }
         return $resultRedirect->setPath('*/*/');
     }
